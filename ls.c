@@ -14,16 +14,16 @@ int main (int argc, char *argv[])
     if (!dir) {
         perror("opendir");
 
-	return 1;
+        return 1;
     }
 
     /* list contents */
     struct dirent *entry;
     while((entry = readdir(dir)) != NULL) {
-	/* skip the dot files by default */
-	if (entry->d_name[0] == '.') continue;
+        /* skip the dot files by default */
+        if (entry->d_name[0] == '.') continue;
 
-	printf("%s \n", entry->d_name);
+        printf("%s \n", entry->d_name);
     }
 
     /* close the stream */
