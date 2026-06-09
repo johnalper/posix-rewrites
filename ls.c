@@ -12,10 +12,22 @@ int main (int argc, char *argv[])
     
     /* non-existant directory: return error */
     if (!dir) {
-	perror("opendir");
+        perror("opendir");
 
 	return 1;
     }
+
+    /* list contents */
+    struct dirent *entry;
+    while((entry = readdir(dir)) != NULL) {
+	/* skip the dot files by default */
+	if (entry->d_name[0] == '.') continue;
+
+	printf("%s \n", entry->d_name);
+    }
+
+    /* close the stream */
+    closedir(dir);
 
     return 0;
 }
